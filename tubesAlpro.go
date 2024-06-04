@@ -22,7 +22,7 @@ type arrayPasien {NMAX} dataPasien
 
 func main{
 	var A arrayPasien
-	var pilihan, n int
+	var pilihan,pilihan_2, pilihan_3, category, n int
 	for pilihan == 1 || pilihan == 2 || pilihan == 0 || pilihan == 3 {
 		fmt.Println("================================================")
 		fmt.Println()
@@ -50,8 +50,11 @@ func main{
 			fmt.Println("1. Tampilkan semua data")
 			fmt.Println("2. Tampilkan berdasarkan kategori")
 			fmt.Println("3. Tampilkan data dari yang terkini")
+			fmt.Scan(&pilihan_2)
 			if pilihan == 1{
 				printData(A, n)
+			}else if pilihan == 2{
+
 			}	
 		}
 	}	
@@ -133,6 +136,15 @@ func printData(A arrayPasien, n i int){
 			fmt.Println("Umur:", P[i].umur)
 			fmt.Println("Gender:", P[i].gender)
 			fmt.Println("Tanggal Lahir:", P[i].TL.tanggal, "/", P[i].TL.bulan, "/", P[i].TL.tahun)
+			fmt.Println("Tanggal Kunjungan:", P[i].kunjungan.tanggal, "/", P[i].kunjungan.bulan, "/", P[i].kunjungan.tahun)
+			fmt.Println("Berat Badan:", P[i].beratBadan)
+			fmt.Println("Tinggi Badan:", P[i].tinggiBadan)
+			fmt.Println("Tekanan Darah Sistolik: ", P[i].TDS)
+			fmt.Println("Tekanan Darah Diatolik: ", P[i].TDD)
+			fmt.Println("----------------------------------------------------")
 		} 
+	}else{
+		fmt.Println("Data tidak ditemukan.")
 	}
 }
+
