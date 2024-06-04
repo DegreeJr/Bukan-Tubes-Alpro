@@ -121,4 +121,18 @@ func hitungUmur(tglLahir, blnLahir, thnLahir, tglKunjungan, blnKunjungan, thnKun
 	return umur
 }
 
-func printData
+func printData(A arrayPasien, n i int){
+	if n > 0{
+		fmt.Println()
+		fmt.Println()
+		fmt.Println()
+		for i := 0; i < n; i++{
+			fmt.Println("-----------------------------------------------------")
+			fmt.Println("Nama:", P[i].Name)
+			fmt.Println("-----------------------------------------------------")
+			fmt.Println("Umur:", P[i].umur)
+			fmt.Println("Gender:", P[i].gender)
+			fmt.Println("Tanggal Lahir:", P[i].TL.tanggal, "/", P[i].TL.bulan, "/", P[i].TL.tahun)
+		} 
+	}
+}
