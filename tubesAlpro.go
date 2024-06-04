@@ -26,7 +26,7 @@ func main{
 	for pilihan == 1 || pilihan == 2 || pilihan == 0 || pilihan == 3 {
 		fmt.Println("================================================")
 		fmt.Println()
-		fmt.Println("	  Selamat Datang di Database Telkomedika	 ")
+		fmt.Println("	  SELAMAT DATANG DI DATABASE TELKOMEDIKA	 ")
 		fmt.Println()
 		fmt.Println("================================================")
 		fmt.Println()
@@ -50,6 +50,9 @@ func main{
 			fmt.Println("1. Tampilkan semua data")
 			fmt.Println("2. Tampilkan berdasarkan kategori")
 			fmt.Println("3. Tampilkan data dari yang terkini")
+			if pilihan == 1{
+				printData(A, n)
+			}	
 		}
 	}	
 }
@@ -117,3 +120,5 @@ func hitungUmur(tglLahir, blnLahir, thnLahir, tglKunjungan, blnKunjungan, thnKun
 	}
 	return umur
 }
+
+func printData
