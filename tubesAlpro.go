@@ -22,11 +22,11 @@ type arrayPasien {NMAX} dataPasien
 
 func main{
 	var A arrayPasien
-	var pilihan, n int
+	var pilihan,pilihan_2, pilihan_3, category, n int
 	for pilihan == 1 || pilihan == 2 || pilihan == 0 || pilihan == 3 {
 		fmt.Println("================================================")
 		fmt.Println()
-		fmt.Println("	  Selamat Datang di Database Telkomedika	 ")
+		fmt.Println("	  SELAMAT DATANG DI DATABASE TELKOMEDIKA	 ")
 		fmt.Println()
 		fmt.Println("================================================")
 		fmt.Println()
@@ -50,12 +50,37 @@ func main{
 			fmt.Println("1. Tampilkan semua data")
 			fmt.Println("2. Tampilkan berdasarkan kategori")
 			fmt.Println("3. Tampilkan data dari yang terkini")
+			fmt.Scan(&pilihan_2)
+			if pilihan_2 == 1{
+				printData(A, n)
+			}else if pilihan_2 == 2{
+				fmt.Println()
+				fmt.Println("Pilih Kategori Data:")
+				fmt.Println("1. Umur")
+				fmt.Println("2. gender")
+				fmt.Println("3. Tahun berkunjung")
+				fmt.Print("Masukkan angka: ")
+				fmt.Scan(&category)
+				for category != 1 && category != 2 && category != 3 {
+					fmt.Println("Masukan tidak valid")
+					fmt.Scan(&category)
+				}
+				if category == 1{
+					printDataBerdasarkanUsia(A, n)
+				}else if category == 2 {
+					printDataBerdasarkanGender(A,n)
+				}else if category == 3 {
+					printDataBerdasarkanTahun(A,n)
+				}
+			}else if pilihan_2 == 3{
+				
+			}
 		}
 	}	
 }
 
 func cekKesehatan(P *Pasien, n int) {
-	fmt.Println("Masukkan nama:")
+	fmt.Println("Masukkan nama lengkap:")
 	fmt.Scan(%A[0].nama)
 	
 	fmt.Println("Masukkan gender(Male/Female):")
@@ -117,3 +142,76 @@ func hitungUmur(tglLahir, blnLahir, thnLahir, tglKunjungan, blnKunjungan, thnKun
 	}
 	return umur
 }
+
+func printData(A arrayPasien, n i int){
+	if n > 0{
+		fmt.Println()
+		fmt.Println()
+		fmt.Println()
+		for i := 0; i < n; i++{
+			fmt.Println("-----------------------------------------------------")
+			fmt.Println("Nama:", P[i].Name)
+			fmt.Println("-----------------------------------------------------")
+			fmt.Println("Umur:", P[i].umur)
+			fmt.Println("Gender:", P[i].gender)
+			fmt.Println("Tanggal Lahir:", P[i].TL.tanggal, "/", P[i].TL.bulan, "/", P[i].TL.tahun)
+			fmt.Println("Tanggal Kunjungan:", P[i].kunjungan.tanggal, "/", P[i].kunjungan.bulan, "/", P[i].kunjungan.tahun)
+			fmt.Println("Berat Badan:", P[i].beratBadan)
+			fmt.Println("Tinggi Badan:", P[i].tinggiBadan)
+			fmt.Println("Tekanan Darah Sistolik: ", P[i].TDS)
+			fmt.Println("Tekanan Darah Diatolik: ", P[i].TDD)
+			fmt.Println("----------------------------------------------------")
+		} 
+	}else{
+		fmt.Println("Data tidak ditemukan.")
+	}
+}
+
+func printDataBerdasarkanUsia(P Pasien, n int){
+	var B Pasien
+	var m int
+	m = 0
+	var age int
+	fmt.Println("Masukkan Umur:")
+	fmt.Scan(&age)
+	for i := 0; i < n; i++ {
+		if P[i].umur == age {
+			B[m] = P[i]
+			m++
+		}
+	}
+	ShowData(B, m)
+}
+
+func printDataBerdasarkanGender(P Pasien, n int) {
+	var C Pasien
+	var m int
+	m = 0
+	var gender string
+	fmt.Println("Male/Female?")
+	fmt.Scan(&gender)
+	for i := 0; i < n; i++ {
+		if P[i].gender == gender {
+			C[m] = P[i]
+			m++
+		}
+	}
+	ShowData(C, m)
+}
+
+func printDataBerdasarkanTahun(P Pasien, n int) {
+	var D Pasien
+	var m int
+	m = 0
+	var year int
+	fmt.Println("Masukkan Tahun:")
+	fmt.Scan(&year)
+	for i := 0; i < n; i++ {
+		if P[i].kunjungan.tahun == year {
+			D[m] = P[i]
+			m++
+		}
+	}
+	ShowData(D, m)
+}
+
