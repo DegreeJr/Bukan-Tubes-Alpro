@@ -9,7 +9,8 @@ type tanggal struct {
 }
 
 type dataPasien struct {
-	nama                    string
+	namaDepan               string
+	namaAkhir               string
 	umur                    int
 	gender                  string
 	TL                      tanggal
@@ -98,7 +99,7 @@ func main() {
 
 func cekKesehatan(A *arrayPasien, n int) {
 	fmt.Println("Masukkan nama lengkap:")
-	fmt.Scan(&A[0].nama)
+	fmt.Scan(&A[n].namaDepan, &A[n].namaAkhir)
 
 	fmt.Println("Masukkan gender(Male/Female):")
 	fmt.Scan(&A[n].gender)
@@ -167,7 +168,7 @@ func printData(A arrayPasien, n int) {
 		fmt.Println()
 		for i := 0; i < n; i++ {
 			fmt.Println("-----------------------------------------------------")
-			fmt.Println("Nama:", A[i].nama)
+			fmt.Println("Nama:", A[i].namaDepan, A[i].namaAkhir)
 			fmt.Println("-----------------------------------------------------")
 			fmt.Println("Umur:", A[i].umur)
 			fmt.Println("Gender:", A[i].gender)
@@ -244,18 +245,18 @@ func sortingTerbaru(A arrayPasien, n int) {
 }
 
 func EditData(A *arrayPasien, n int) {
-	var nama string
+	var namaDepan, namaAkhir string
 	fmt.Println("Masukkan nama lengkap pasien yang ingin diedit:")
-	fmt.Scan(&nama)
+	fmt.Scan(&namaDepan, &namaAkhir)
 
 	found := false // Variabel flag untuk menandai apakah nama ditemukan atau tidak
 
 	for i := 0; i < n; i++ {
-		if A[i].nama == nama {
+		if (A[i].namaDepan == namaDepan) && (A[i].namaAkhir == namaAkhir) {
 			// Menampilkan dan memperbarui data pasien
 			found = true
 			fmt.Println("Data pasien yang akan diedit:")
-			fmt.Println("Nama:", A[i].nama)
+			fmt.Println("Nama:", A[i].namaDepan, A[i].namaAkhir)
 			fmt.Println("Umur:", A[i].umur)
 			fmt.Println("Gender:", A[i].gender)
 			fmt.Println("Tanggal Lahir:", A[i].TL.tanggal, "/", A[i].TL.bulan, "/", A[i].TL.tahun)
@@ -278,7 +279,7 @@ func EditData(A *arrayPasien, n int) {
 
 			if choice == 1 {
 				fmt.Println("Masukkan nama baru (terdiri dari nama depan dan nama belakang):")
-				fmt.Scan(&A[i].nama)
+				fmt.Scan(&A[i].namaDepan, &A[i].namaAkhir)
 				fmt.Println("Data berhasil diupdate!")
 			} else if choice == 2 {
 				fmt.Println("Masukkan gender baru:")
@@ -287,10 +288,12 @@ func EditData(A *arrayPasien, n int) {
 			} else if choice == 3 {
 				fmt.Println("Masukkan Tanggal Lahir baru (format: DD MM YYYY):")
 				fmt.Scan(&A[i].TL.tanggal, &A[i].TL.bulan, &A[i].TL.tahun)
+				hitungUmur(A[i].TL.tanggal, A[i].TL.bulan, A[i].TL.tahun, A[i].kunjungan.tanggal, A[i].kunjungan.bulan, A[i].kunjungan.tahun)
 				fmt.Println("Data berhasil diupdate!")
 			} else if choice == 4 {
 				fmt.Println("Masukkan tanggal kunjungan baru (format: DD MM YYYY):")
 				fmt.Scan(&A[i].kunjungan.tanggal, &A[i].kunjungan.bulan, &A[i].kunjungan.tahun)
+				hitungUmur(A[i].TL.tanggal, A[i].TL.bulan, A[i].TL.tahun, A[i].kunjungan.tanggal, A[i].kunjungan.bulan, A[i].kunjungan.tahun)
 				fmt.Println("Data berhasil diupdate!")
 			} else if choice == 5 {
 				fmt.Println("Masukkan berat badan baru:")
@@ -312,14 +315,14 @@ func EditData(A *arrayPasien, n int) {
 }
 
 func DeleteData(A *arrayPasien, n *int) {
-	var nama string
+	var namaDepan, namaAkhir string
 	fmt.Println("Masukkan nama lengkao pasien yang ingin dihapus:")
-	fmt.Scan(&nama)
+	fmt.Scan(&namaDepan, &namaAkhir)
 
 	found := false // Variabel flag untuk menandai apakah ID ditemukan atau tidak
 
 	for i := 0; i < *n; i++ {
-		if A[i].nama == nama {
+		if (A[i].namaDepan == namaDepan) && (A[i].namaAkhir == namaAkhir) {
 			found = true
 			// Geser data ke kiri untuk menutup celah
 			for j := i; j < *n-1; j++ {
